@@ -12,31 +12,23 @@ Add green_light to your Gemfile and run the <tt>bundle install</tt> command.
 
 == Usage
 
-Generate the required green_light configuration:-
-
-  rails g green_light:install
-
 Include the JQuery validation plugin in your <tt>app/assets/javascripts/application.js</tt> file:-
 
   //= require jquery.validate
 
 Since the validation rules are creating dynmically they need to be included in the header of your layout file:-
 
-  <%= javascript_include_tag "green_light" %>
+  <%= javascript_include_tag 'green-light', 'data-turbolinks-track' => true %>
 
-Specify which models you want to have client-side validation in the <tt>config/green_light.yml</tt> file e.g.:-
+Point the <tt>data-validatable</tt> to <tt>green-light</tt> in the forms that you wish to have client side validation:-
 
-  validate_models: ['ModelName1', 'ModelName2']
-
-Add the <tt>green_light</tt> class to the forms that you wish to have client side validation:-
-
-  <%= form_for(@model, :html => { :class => 'green_light' }) do |f| %>
+  <%= form_for(@model, :html => { 'data-validatable' => 'green-light' }) do |f| %>
 
 And finally, add some validations to your models!
 
 
 == Currently Supports these validations
-  
+
   validates_presence_of
   validates_length_of
   validates_format_of
