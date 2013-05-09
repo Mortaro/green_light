@@ -931,6 +931,12 @@ $.extend($.validator, {
 
 			param = typeof param == "string" && {url:param} || param;
 
+      // adds the current id to help validating uniqueness
+      id = $($(element).closest('form').attr('action').split('/')).last().get(0)
+      if(id != undefined) {
+        param.url += '&id=' + id
+      }
+
 			if ( this.pending[element.name] ) {
 				return "pending";
 			}
